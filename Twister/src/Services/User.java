@@ -71,7 +71,6 @@ public class User {
 			if(!ConnexionTools.checkUser(login)) 
 				return ServiceTools.ErrorJson.serviceRefused("User not exists", 1);
 			
-			
 			if(!ConnexionTools.checkLogPwd(login, password))
 				return ServiceTools.ErrorJson.serviceRefused("Wrong password", 2);
 			if(ConnexionTools.UserConnected(login))

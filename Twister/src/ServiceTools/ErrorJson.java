@@ -13,7 +13,8 @@ public class ErrorJson {
 	}
 	public static JSONObject serviceAccepted() throws JSONException {
 		JSONObject o = new JSONObject();
-		o.put("Status","OK");
+		o.put("message","OK");
+		o.put("code",200);
 		return o;
 	}
 	
