@@ -11,7 +11,7 @@ public class TestFriend {
 
 	public static void main(String[] args) {
 		//System.out.println(FriendTools.getId("1pu7lmv716oeu"));
-		JSONObject  o=Friends.AddFriend("-1jzpuyaey35uz-1w3u6prchxley", 25);
+		JSONObject  o=Friends.AddFriend("1605mtdvt5rnk-1fc6r8u8n9xj7", 37);
 		System.out.println(o.toString());
 		//System.out.println((Friends.listFriend(27).toString()));
 		//System.out.println("login : "+UserTools.getLogin(12));

@@ -63,9 +63,11 @@ public class User {
 	public static JSONObject connexion(String login, String password) {
 		JSONObject retour= new JSONObject();
 		try {
-			if((login==null)||(password == null))
+			if((login==null)||(password == null)) {
+				//retour.append("message", "Pas d'arguments");
+				//retour.append("code", -1);
 				return ServiceTools.ErrorJson.serviceRefused("Pas d'argument", -1);
-		
+			}
 			if(!ConnexionTools.checkUser(login)) 
 				return ServiceTools.ErrorJson.serviceRefused("User not exists", 1);
 			
@@ -73,7 +75,7 @@ public class User {
 			if(!ConnexionTools.checkLogPwd(login, password))
 				return ServiceTools.ErrorJson.serviceRefused("Wrong password", 2);
 			if(ConnexionTools.UserConnected(login))
-				return ServiceTools.ErrorJson.serviceRefused("Utilisateur deja connect�",3);
+				return ServiceTools.ErrorJson.serviceRefused("Utilisateur deja connect",3);
 		
 			String key = UserTools.InsertConnexion(login);
 			

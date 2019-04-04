@@ -39,10 +39,10 @@ public class Message {
 			if(!ServiceTools.ConnexionTools.checkSession(key))
 				return ServiceTools.ErrorJson.serviceRefused("User not connected", -1);
 			
-			if(ConnexionTools.hasExceededTimeOut(key)) {
+			/*	if(ConnexionTools.hasExceededTimeOut(key)) {
 					User.deconnexion(key);
 					return ServiceTools.ErrorJson.serviceRefused("TimeOut exceeded, disconnected automatically", 1);
-				}
+				}*/
 			
 				MongoDatabase mdb = Database.getMongoCollection();
 				MongoCollection<Document> msg = mdb.getCollection("messages");		
@@ -60,20 +60,13 @@ public class Message {
 		}catch(JSONException e) {
 			
 		}
-		catch(SQLException s) {
+		/*catch(SQLException s) {
 			s.printStackTrace();
 		}
-		
+		*/
 		return retour;
 			
 	}
-	/**
-	 * REMOVE MESSAGE
-	 * 
-	 * @param key
-	 * @param idMessage
-	 * @return
-	 */
 	
 	public static JSONObject removeMessage(String key, String idMessage) {
 		JSONObject jo = new JSONObject();
@@ -97,6 +90,8 @@ public class Message {
 
 			//String id= FriendTools.getId(key)+"";
 			Document doc = new Document();
+			doc.append("key", key);
+			doc.append("_id", idMessage);
 			MongoDatabase mdb = Database.getMongoCollection();
 
 			MongoCollection<Document> message = mdb.getCollection("message");
@@ -156,9 +151,7 @@ public class Message {
 		JSONObject auteur = new JSONObject();
 		try {
 			auteur.put("idUser",id_user);
-		
-		auteur.put("login", UserTools.getLogin(id_user));
-		
+			auteur.put("login", UserTools.getLogin(id_user));
 		while(msg.hasNext()){
 			Document document = msg.next();
 			JSONObject msgTmp = new JSONObject();

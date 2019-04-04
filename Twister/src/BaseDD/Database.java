@@ -28,7 +28,7 @@ public class Database {
 		}
 	}
 	public Connection getConnection() throws SQLException {
-			return ((Database) dataSource).getConnection();
+			return dataSource.getConnection();
 		
 	}
 	public static Connection getMySQLConnection() throws SQLException {
@@ -50,7 +50,7 @@ public class Database {
 		else { 
 			 
 				if (database==null) { 
-				database=new Database("jdbc/Djaoudene-Ghout"); 
+				database=new Database("jdbc/db"); 
 				} 
 				return(database.getConnection()); 
 				}

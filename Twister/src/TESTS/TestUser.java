@@ -25,14 +25,14 @@ public class TestUser {
 		/**
 		 * TEST CREATION D'UN UTILISATEUR
 		 */
-		//JSONObject  o=User.createUser("amazigh","abcde",c,d,e);
+		JSONObject  o=User.createUser("Coucou","123456",c,d,e);
 	//	System.out.println(User.createUser("twiter","mdptutu",c,d,e).toString());
 
 		//System.out.println(User.createUser(log,psw,c,d,e).toString());
 		/**
 		 * TEST CONNEXION
 		 */
-		System.out.println(User.connexion("amazigh", "abcde"));
+		//System.out.println(User.connexion("twiter", "mdptutu"));
 		/**
 		 * TEST DECONNEXION
 		 */

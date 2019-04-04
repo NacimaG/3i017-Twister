@@ -34,24 +34,19 @@ public class Friends {
 				
 			if(!ConnexionTools.checkId(id_friend))
 				return ErrorJson.serviceRefused("id friend not exists", 100);
-			try {
-				if(ConnexionTools.hasExceededTimeOut(key)) {
-					System.out.println(1);
-					User.deconnexion(key);
-					return ServiceTools.ErrorJson.serviceRefused("TimeOut exceeded, disconnected automatically", 1);
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if(ConnexionTools.hasExceededTimeOut(key)) {
+				System.out.println(1);
+				User.deconnexion(key);
+				return ServiceTools.ErrorJson.serviceRefused("TimeOut exceeded, disconnected automatically", 1);
 			}
 				
 				FriendTools.InsertFriend(key, id_friend);
 				retour = ServiceTools.ErrorJson.serviceAccepted();
 			
 		
-			}/*catch(SQLException s) {
+			}catch(SQLException s) {
 				s.printStackTrace();
-			}*/catch(JSONException j) {
+			}catch(JSONException j) {
 				j.printStackTrace();
 			}
 			try {
@@ -73,7 +68,7 @@ public class Friends {
 	 * @return
 	 */
 	public static JSONObject RemoveFriend(String key, int id_friend) {
-		try {
+		/*try {
 			if(ConnexionTools.hasExceededTimeOut(key)) {
 				User.deconnexion(key);
 				return ServiceTools.ErrorJson.serviceRefused("TimeOut exceeded, disconnected automatically", 1);
@@ -87,7 +82,7 @@ public class Friends {
 			ConnexionTools.updateTimeOut(key);
 			}catch(SQLException s) {
 				s.printStackTrace();
-			}
+			}*/
 		JSONObject retour= new JSONObject();
 		
 			try {
@@ -119,7 +114,7 @@ public class Friends {
 	
 	
 	public static JSONObject listFriend(int id_user1){
-		String clef = ConnexionTools.getKey(id_user1);
+		/*String clef = ConnexionTools.getKey(id_user1);
 		try {
 			if(ConnexionTools.hasExceededTimeOut(clef)) {
 				User.deconnexion(clef);
@@ -134,7 +129,7 @@ public class Friends {
 			ConnexionTools.updateTimeOut(clef);
 			}catch(SQLException s) {
 				s.printStackTrace();
-			}
+			}*/
 		JSONObject jo = new JSONObject();
 		Connection connexion;
 	
@@ -142,12 +137,11 @@ public class Friends {
 			if(!ConnexionTools.checkId(id_user1)) 
 				return ServiceTools.ErrorJson.serviceRefused("Utilisateur not exists",-1);
 				
-			connexion = Database.getMySQLConnection();
+			connexion = Database.getMySQLConnection();  
 			Statement statement = connexion.createStatement();
 			String query = "SELECT id_user2 FROM Friends WHERE id_user1 = '"+id_user1+"' ";
 			ResultSet resultat=	statement.executeQuery(query);
 			while(resultat.next()){
-				System.out.println("cc");
 				jo.append("id_friend", resultat.getString(1));
 				jo.append("login", UserTools.getLogin(Integer.parseInt(resultat.getString(1))));
 			}

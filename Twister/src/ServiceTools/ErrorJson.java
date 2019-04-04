@@ -6,7 +6,8 @@ import org.json.JSONObject;
 public class ErrorJson {
 	public static JSONObject serviceRefused(String message, int codeErreur)throws JSONException {
 		JSONObject o = new JSONObject();
-		o.put(message,codeErreur);
+		o.put("message",message);
+		o.put("code", codeErreur);
 		return o;
 		
 	}

@@ -154,7 +154,7 @@ public class ConnexionTools {
 
 			Connection connexion = Database.getMySQLConnection();
 			Statement statement = connexion.createStatement();
-			String query = "UPDATE Session SET session_fin = '"+dateFinSession+"' WHERE session_key = '"+key_session+"' ";
+			String query = "UPDATE Session SET session_fin = "+dateFinSession+" WHERE session_key = '"+key_session+"' ";
 			int resultat=	statement.executeUpdate(query);
 			
 			
@@ -169,7 +169,7 @@ public class ConnexionTools {
 		Connection connexion = Database.getMySQLConnection();
 		
 		
-		String select = "SELECT session_fin FROM session WHERE session_key = '"+key_session+"'";
+		String select = "SELECT session_fin FROM session WHERE key_session = '"+key_session+"'";
 
 		PreparedStatement preparedStatement=null;
 
@@ -177,8 +177,6 @@ public class ConnexionTools {
 			Statement statement = connexion.createStatement();
 			
 			ResultSet resultat = statement.executeQuery(select);
-			
-			
 			
 	        if(resultat.next()){
 				Timestamp date_fin=resultat.getTimestamp(1);
@@ -194,7 +192,6 @@ public class ConnexionTools {
 			if(preparedStatement!=null)
 				preparedStatement.close();
 		}
-	
 		
 	}
 	public static String getKey(int id_user) {

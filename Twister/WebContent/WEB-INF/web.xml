@@ -1,34 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
-	<display-name>Twister</display-name>
-	<servlet>
-		<description>
-		</description>
-		<display-name>RemoveMessage</display-name>
-		<servlet-name>RemoveMessage</servlet-name>
-		<servlet-class>Servlet.Message.AddMessage</servlet-class>
-	</servlet>
-	<servlet>
-		<description>
-		</description>
-		<display-name>AddMessage</display-name>
-		<servlet-name>AddMessage</servlet-name>
-		<servlet-class>Servlet.Message.AddMessage</servlet-class>
-	</servlet>
+
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  <servlet>
+    <servlet-name>CreateUser</servlet-name>
+    <servlet-class>Servlet.User.CreateUser</servlet-class>
+  </servlet>
+   <servlet>
+    <servlet-name>Connexion</servlet-name>
+    <servlet-class>Servlet.User.Connexion</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Logout</servlet-name>
+    <servlet-class>Servlet.User.Logout</servlet-class>
+  </servlet>
+   <servlet>
+    <servlet-name>AddFriend</servlet-name>
+    <servlet-class>Servlet.Friends.AddFriend</servlet-class>
+  </servlet>
+   <servlet>
+    <servlet-name>RemoveFriend</servlet-name>
+    <servlet-class>Servlet.Friends.RemoveFriend</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ListFriend</servlet-name>
+    <servlet-class>Servlet.Friends.ListFriend</servlet-class>
+  </servlet>
+
+   <servlet>
+    <servlet-name>AddMessage</servlet-name>
+    <servlet-class>Servlet.Message.AddMessage</servlet-class>
+  </servlet>
+   <servlet>
+    <servlet-name>RemoveMessage</servlet-name>
+    <servlet-class>Servlet.Message.RemoveMessage</servlet-class>
+  </servlet>
+ <servlet>
+    <servlet-name>ListMessage</servlet-name>
+    <servlet-class>Servlet.Message.ListMessage</servlet-class>
+  </servlet>
+ 
 	<servlet-mapping>
-		<servlet-name>RemoveMessage</servlet-name>
-		<url-pattern>/RemoveMessage</url-pattern>
-	</servlet-mapping>
+   	 	<servlet-name>CreateUser</servlet-name>
+    	<url-pattern>/CreateUser</url-pattern>
+  	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>AddMessage</servlet-name>
-		<url-pattern>/AddMessage</url-pattern>
-	</servlet-mapping>
-	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
-	</welcome-file-list>
+   	 	<servlet-name>Connexion</servlet-name>
+    	<url-pattern>/Connexion</url-pattern>
+  	</servlet-mapping>
+	<servlet-mapping>
+   	 	<servlet-name>Logout</servlet-name>
+    	<url-pattern>/Logout</url-pattern>
+  	</servlet-mapping>
+	<servlet-mapping>
+   	 	<servlet-name>AddFriend</servlet-name>
+    	<url-pattern>/AddFriend</url-pattern>
+  	</servlet-mapping>
+	<servlet-mapping>
+   	 	<servlet-name>RemoveFriend</servlet-name>
+    	<url-pattern>/RemoveFriend</url-pattern>
+  	</servlet-mapping>
+	<servlet-mapping>
+   	 	<servlet-name>ListFriend</servlet-name>
+    	<url-pattern>/ListFriend</url-pattern>
+  	</servlet-mapping> 
+	<servlet-mapping>
+   	 	<servlet-name>AddMessage</servlet-name>
+    	<url-pattern>/AddMessage</url-pattern>
+  	</servlet-mapping> 
+	<servlet-mapping>
+   	 	<servlet-name>RemoveMessage</servlet-name>
+    	<url-pattern>/RemoveMessage</url-pattern>
+  	</servlet-mapping> 
+  	<servlet-mapping>
+   	 	<servlet-name>ListMessage</servlet-name>
+    	<url-pattern>/ListMessage</url-pattern>
+  	</servlet-mapping> 
+  		<filter>
+		<filter-name>CorsFilter</filter-name>
+		<filter-class>BaseDD.CORSFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>CorsFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+  	
+
+  	
+
+  	
+		
 </web-app>

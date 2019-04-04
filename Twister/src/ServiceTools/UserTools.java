@@ -38,8 +38,7 @@ public static String InsertConnexion( String login) {
 		String key = Long.toString(uuid.getMostSignificantBits(), 36) + Long.toString(uuid.getLeastSignificantBits(), 36);;
 		
 		try {
-			Timestamp fin_session  =new Timestamp(System.currentTimeMillis());
-			fin_session.setHours(fin_session.getHours()+1);
+			Timestamp fin_session  =new Timestamp(System.currentTimeMillis()+(((3600) + 59)* 1000));
 			Connection connexion = Database.getMySQLConnection();
 			Statement statement = connexion.createStatement();
 			String query ="INSERT INTO Session(session_key,user_login,session_fin) VALUES('"+key+"','"+login+"','"+fin_session+"');";
