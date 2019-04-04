@@ -24,6 +24,8 @@ public class Logout extends HttpServlet{
 		JSONObject o = new JSONObject();
 		User.deconnexion(key);
 		out.print(o.toString());
+		//marche pas sur le serveur mais en local si
+
 		
 	}
 }

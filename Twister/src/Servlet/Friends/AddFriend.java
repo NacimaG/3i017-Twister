@@ -28,13 +28,13 @@ public class AddFriend extends HttpServlet {
 		
 		/***********************************NOT OK *******************/
 		try {
-		int id_friend =Integer.parseInt(ami);
+		int  id_friend =Integer.parseInt(ami);
 		out.println((Friends.AddFriend(key, id_friend)).toString());
 
 		}catch(NumberFormatException e) {
 			e.printStackTrace();
 		}
-
+		 
 	 	response.setContentType( " text / plain " );
 		
 	 }

@@ -14,7 +14,7 @@ public class TestUser {
 	public static void main(String[] args) {
 		
 		String log="twiter";
-		String psw="abcde";
+		String psw="abcde"; 
 		String c="tutu";
 		String d="otot";
 		String e="atat";

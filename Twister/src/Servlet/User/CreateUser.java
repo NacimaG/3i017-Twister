@@ -26,10 +26,10 @@ public class CreateUser extends HttpServlet {
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
 		String mail = request.getParameter("mail");
-
+		
 		//JSONObject o = new JSONObject();
 		JSONObject jo = User.createUser(log, psw, nom, prenom, mail);
-		
+		//marche pas sur le serveur mais en local si
 		out.println(jo.toString());
 
 
