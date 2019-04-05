@@ -111,9 +111,9 @@ public class User {
 
 		try {
 		if(key == null) 
-			return ServiceTools.ErrorJson.serviceRefused("Cle connexion invalide",1000);			
+			return ServiceTools.ErrorJson.serviceRefused("Cle connexion invalide",10);			
 		if(!ConnexionTools.checkSession(key))
-			return ServiceTools.ErrorJson.serviceRefused("Cle connexion inexisatante",1000);
+			return ServiceTools.ErrorJson.serviceRefused("Cle connexion inexisatante",100);
 		try {
 			Connection connexion = Database.getMySQLConnection();
 			Statement statement = connexion.createStatement();
