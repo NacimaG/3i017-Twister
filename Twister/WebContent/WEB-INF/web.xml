@@ -75,7 +75,7 @@
    	 	<servlet-name>ListMessage</servlet-name>
     	<url-pattern>/ListMessage</url-pattern>
   	</servlet-mapping> 
-  		<filter>
+  	<filter>
 		<filter-name>CorsFilter</filter-name>
 		<filter-class>BaseDD.CORSFilter</filter-class>
 	</filter>

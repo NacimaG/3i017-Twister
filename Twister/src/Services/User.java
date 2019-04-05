@@ -99,7 +99,7 @@ public class User {
 }
 	/**
 	 ********** DECONNEXION
-	 * verifer que la cl� n'est pas null et que la connexion existe dans la base de donn�e
+	 * verifer que la cle n'est pas null et que la connexion existe dans la base de donnee
 	 * et alors peut se d�connecter
 	 * @return Json Object qui est le seviceRefuser en cas d'erreur et serviceAccepted sinon
 	 *

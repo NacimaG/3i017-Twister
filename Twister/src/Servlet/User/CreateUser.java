@@ -32,7 +32,6 @@ public class CreateUser extends HttpServlet {
 		//marche pas sur le serveur mais en local si
 		out.println(jo.toString());
 
-
 	}
 
 }

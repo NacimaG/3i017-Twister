@@ -25,7 +25,7 @@ public class Connexion extends HttpServlet {
 		String log = request.getParameter("login");
 		String psw = request.getParameter("password");
 		
-		out.println((Services.User.connexion(log, psw)).toString());
+		out.println(Services.User.connexion(log, psw));
 		
 	
 	}
