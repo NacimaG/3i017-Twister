@@ -25,18 +25,19 @@ public class TestUser {
 		/**
 		 * TEST CREATION D'UN UTILISATEUR
 		 */
-		JSONObject  o=User.createUser("test4","test4",c,d,e);
+		//JSONObject  o=User.createUser("test4","test4",c,d,e);
 		//System.out.println(User.createUser("tata","mdptata",c,d,e).toString());
 
 		//System.out.println(User.createUser(log,psw,c,d,e).toString());
 		/**
 		 * TEST CONNEXION
 		 */
-		//System.out.println(User.connexion("twiter", "mdptutu"));
+		//System.out.println(User.connexion("test4", "test4"));
 		/**
 		 * TEST DECONNEXION
-		 */
-		//System.out.println(User.deconnexion("zi6ehg2o53dg-1n1t7r8tqiiu6"));
+		 */	
+		
+		System.out.println(User.deconnexion("-t7t99wmbyc71-1b7d2gxwdztj4"));
 		//System.out.println(ConnexionTools.getKey(28));
 	
 	}

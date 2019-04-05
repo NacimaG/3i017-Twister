@@ -17,7 +17,7 @@ public class Logout extends HttpServlet{
 		super();
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		response.setContentType("json");
+		response.setContentType("text /plain");
 		PrintWriter out = response.getWriter();
 		String key = request.getParameter("key");
 		JSONObject o = new JSONObject();

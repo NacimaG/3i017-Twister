@@ -18,7 +18,7 @@ public class CreateUser extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("application/json");
+		response.setContentType("text/plain");
 		PrintWriter out = response.getWriter();
 
 		String log = request.getParameter("login");
@@ -28,9 +28,9 @@ public class CreateUser extends HttpServlet {
 		String mail = request.getParameter("mail");
 		
 		//JSONObject o = new JSONObject();
-		JSONObject jo = User.createUser(log, psw, nom, prenom, mail);
+		 
 		//marche pas sur le serveur mais en local si
-		out.println(jo.toString());
+		out.println(User.createUser(log, psw, nom, prenom, mail));
 
 	}
 

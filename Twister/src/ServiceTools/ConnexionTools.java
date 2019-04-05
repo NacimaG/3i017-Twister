@@ -102,7 +102,12 @@ public class ConnexionTools {
 		
 		return false;
 	}
-
+	/**
+	 * connexion avec la base de donnée pour vérifier si la clé donné en paramètre exist dans la base
+	 * càd si l'utilisateur est connecté
+	 * @param key clé de la session
+	 * @return true si la session existe (utilisateur connecté) false sinon
+	 */
 	public static boolean checkSession(String key) {
 		
 		/**
