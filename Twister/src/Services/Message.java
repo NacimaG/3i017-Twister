@@ -37,7 +37,7 @@ public class Message {
 				return ServiceTools.ErrorJson.serviceRefused("Pas d'arguments", -1);
 		
 			if(!ServiceTools.ConnexionTools.checkSession(key))
-				return ServiceTools.ErrorJson.serviceRefused("User not connected", -1);
+				return ServiceTools.ErrorJson.serviceRefused("User not connected", 1);
 			
 			/*	if(ConnexionTools.hasExceededTimeOut(key)) {
 					User.deconnexion(key);

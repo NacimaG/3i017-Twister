@@ -137,6 +137,11 @@ public class User {
 		}
 		return retour;		
 	}
+	/**
+	 * **********GetProfil
+	 * @param key
+	 * @return
+	 */
 	
 	public static JSONObject getProfil(String key) {
 		JSONObject retour = new JSONObject();
@@ -155,11 +160,14 @@ public class User {
 			String query = "SELECT * FROM User WHERE user_login= '"+login+"' ";
 			ResultSet resultat=	statement.executeQuery(query);
 			while(resultat.next()){
-				jo.append("nom", resultat.getString(3));
-				jo.append("prenom", resultat.getString(4));
-				jo.append("mail", resultat.getString(5));
-				jo.append("téléphone", resultat.getString(6));
-				
+				System.out.println("nom::"+resultat.getString(3));
+				jo.append("state", "OK");
+				jo.append("code", 200);
+				jo.append("nom", resultat.getString(5));//3
+				jo.append("prenom", resultat.getString(4));//4
+				jo.append("mail", resultat.getString(6));//5
+				jo.append("telephone", resultat.getString(6));//6
+				System.out.println("afficher ke  :: "+jo.get("nom"));
 			}
 			resultat.close();
 			statement.close();
