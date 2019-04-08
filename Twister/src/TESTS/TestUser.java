@@ -18,6 +18,7 @@ public class TestUser {
 		String c="tutu";
 		String d="otot";
 		String e="atat";
+		String p="phone";
 		
 		
 		Date date= new Date();
@@ -26,7 +27,8 @@ public class TestUser {
 		 * TEST CREATION D'UN UTILISATEUR
 		 */
 		//JSONObject  o=User.createUser("test4","test4",c,d,e);
-		//System.out.println(User.createUser("tata","mdptata",c,d,e).toString());
+		System.out.println(User.createUser("tata","mdptata",c,d,e,p).toString());
+		
 
 		//System.out.println(User.createUser(log,psw,c,d,e).toString());
 		/**

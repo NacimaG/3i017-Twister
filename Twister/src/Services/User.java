@@ -1,12 +1,15 @@
 package Services;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.mongodb.util.JSON;
 
 import ServiceTools.ConnexionTools;
 import ServiceTools.FriendTools;
@@ -23,7 +26,7 @@ public class User {
 	 * Entree : prenom + nom + login + password
 	 * Sortie : {}
 	 */
-	public static JSONObject createUser(String login,String password,String nom ,String prenom, String mail) {
+	public static JSONObject createUser(String login,String password,String nom ,String prenom, String mail,String phoneNumber) {
 		JSONObject retour= new JSONObject();
 		try {
 		try {
@@ -34,7 +37,7 @@ public class User {
 			return ServiceTools.ErrorJson.serviceRefused("Login existe deja", 1);
 		}
 			
-		ServiceTools.UserTools.InsertUser(login,password,nom,prenom, mail);
+		ServiceTools.UserTools.InsertUser(login,password,nom,prenom, mail,phoneNumber);
 		
 		retour = ServiceTools.ErrorJson.serviceAccepted();
 	
@@ -133,6 +136,44 @@ public class User {
 			e.printStackTrace();
 		}
 		return retour;		
+	}
+	
+	public static JSONObject getProfil(String key) {
+		JSONObject retour = new JSONObject();
+		try {
+			if(key==null)
+				return ServiceTools.ErrorJson.serviceRefused("Pas d'argument", -1);
+			if(!ConnexionTools.checkSession(key)) 
+				return ServiceTools.ErrorJson.serviceRefused("connexion not existante", 1);
+			String login = UserTools.getLogSession(key);
+			Connection connexion;
+			JSONObject jo = new JSONObject();
+			
+			connexion = Database.getMySQLConnection();  
+			Statement statement = connexion.createStatement();
+			
+			String query = "SELECT * FROM User WHERE user_login= '"+login+"' ";
+			ResultSet resultat=	statement.executeQuery(query);
+			while(resultat.next()){
+				jo.append("nom", resultat.getString(3));
+				jo.append("prenom", resultat.getString(4));
+				jo.append("mail", resultat.getString(5));
+				jo.append("téléphone", resultat.getString(6));
+				
+			}
+			resultat.close();
+			statement.close();
+			connexion.close();
+			return jo;
+
+		}catch(JSONException j) {
+			j.printStackTrace();
+		}catch(SQLException s) {
+			s.printStackTrace();
+		}
+		
+		
+		return null;
 	}
 	
 	

@@ -9,6 +9,10 @@
     <servlet-name>Connexion</servlet-name>
     <servlet-class>Servlet.User.Connexion</servlet-class>
   </servlet>
+     <servlet>
+    <servlet-name>GetProfil</servlet-name>
+    <servlet-class>Servlet.User.GetProfil</servlet-class>
+  </servlet>
   <servlet>
     <servlet-name>Logout</servlet-name>
     <servlet-class>Servlet.User.Logout</servlet-class>
@@ -46,6 +50,10 @@
 	<servlet-mapping>
    	 	<servlet-name>Connexion</servlet-name>
     	<url-pattern>/Connexion</url-pattern>
+  	</servlet-mapping>
+  		<servlet-mapping>
+   	 	<servlet-name>GetProfil</servlet-name>
+    	<url-pattern>/GetProfil</url-pattern>
   	</servlet-mapping>
 	<servlet-mapping>
    	 	<servlet-name>Logout</servlet-name>
