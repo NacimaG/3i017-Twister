@@ -3,6 +3,8 @@ package Services;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.bson.Document;
 import org.json.JSONArray;
@@ -148,24 +150,23 @@ public class Message {
 		JSONObject json = new JSONObject();
 
 		JSONArray messages = new JSONArray();
-		JSONObject auteur = new JSONObject();
 		try {
-			auteur.put("idUser",id_user);
-			auteur.put("login", UserTools.getLogin(id_user));
+
 		while(msg.hasNext()){
 			Document document = msg.next();
 			JSONObject msgTmp = new JSONObject();
-
+			
 			msgTmp.put("message_id", document.get("_id"));
+			msgTmp.put("date", new Date());
 			msgTmp.put("text", document.get("text"));
 			
-			 messages.put(msgTmp);
+			messages.put(msgTmp);
 		}
 		
-		json.put("author",auteur);
+		json.put("idUser",id_user);
+		json.put("login", UserTools.getLogin(id_user));
 		json.put("messages", messages);
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return json;

@@ -25,7 +25,7 @@ public class ListMessage extends HttpServlet {
 		
 		String key = request.getParameter("key");
 		
-		out.println(Services.Message.ListMessage(key).toString());
+		out.println(Services.Message.ListMessage(key));
 		}
 
 
