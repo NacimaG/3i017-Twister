@@ -1,6 +1,7 @@
 package TESTS;
 
 
+import java.util.Calendar;
 import java.util.Date;
 
 import org.json.JSONObject;
@@ -19,7 +20,7 @@ public class TestUser {
 		String d="otot";
 		String e="atat";
 		String p="phone";
-		
+		System.out.println(Calendar.DATE);
 		
 		Date date= new Date();
 		System.out.println(date);

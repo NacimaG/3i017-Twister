@@ -54,8 +54,8 @@ public class Message {
 				
 				query.append("idUser",FriendTools.getId(key));
 				query.append("text", text);
-		
-		msg.insertOne(query);
+				query.append("date", new Date());
+				msg.insertOne(query);
 		
 		retour = ServiceTools.ErrorJson.serviceAccepted();
 		
@@ -157,7 +157,7 @@ public class Message {
 			JSONObject msgTmp = new JSONObject();
 			
 			msgTmp.put("message_id", document.get("_id"));
-			msgTmp.put("date", new Date());
+			msgTmp.put("date",document.get("date") );
 			msgTmp.put("text", document.get("text"));
 			
 			messages.put(msgTmp);
