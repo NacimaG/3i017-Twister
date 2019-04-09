@@ -32,7 +32,8 @@ public class User {
 		try {
 		if((login==null)||(mail==null)||(prenom==null)||(nom == null)) {
 			return ServiceTools.ErrorJson.serviceRefused("Pas d'argument", -1);}
-			
+		if((phoneNumber == null))
+			return ServiceTools.ErrorJson.serviceRefused("Pas d'argument phone", -1);
 		if(ServiceTools.ConnexionTools.checkUser(login)) { 
 			return ServiceTools.ErrorJson.serviceRefused("Login existe deja", 1);
 		}
