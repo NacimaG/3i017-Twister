@@ -34,28 +34,27 @@ public class Friends {
 				
 			if(!ConnexionTools.checkId(id_friend))
 				return ErrorJson.serviceRefused("id friend not exists", 100);
-			if(ConnexionTools.hasExceededTimeOut(key)) {
+		/*	if(ConnexionTools.hasExceededTimeOut(key)) {
 				System.out.println(1);
 				User.deconnexion(key);
 				return ServiceTools.ErrorJson.serviceRefused("TimeOut exceeded, disconnected automatically", 1);
 			}
-				
+			*/	
 				FriendTools.InsertFriend(key, id_friend);
 				retour = ServiceTools.ErrorJson.serviceAccepted();
 			
 		
-			}catch(SQLException s) {
-				s.printStackTrace();
+			//}catch(SQLException s) {
+				//s.printStackTrace();
 			}catch(JSONException j) {
 				j.printStackTrace();
 			}
-			try {
-				System.out.println(2);
+/*			try {
 			ConnexionTools.updateTimeOut(key);
 			}catch(SQLException s) {
 				s.printStackTrace();
 			}
-		
+	*/	
 		return retour;
 	}
 	/**
@@ -113,7 +112,7 @@ public class Friends {
 	}
 	
 	
-	public static JSONObject listFriend(int id_user1){
+	public static JSONObject listFriend(String login){
 		/*String clef = ConnexionTools.getKey(id_user1);
 		try {
 			if(ConnexionTools.hasExceededTimeOut(clef)) {
@@ -130,6 +129,7 @@ public class Friends {
 			}catch(SQLException s) {
 				s.printStackTrace();
 			}*/
+		int id_user1= ConnexionTools.getId(login);
 		JSONObject jo = new JSONObject();
 		Connection connexion;
 	
@@ -142,6 +142,8 @@ public class Friends {
 			String query = "SELECT id_user2 FROM Friends WHERE id_user1 = '"+id_user1+"' ";
 			ResultSet resultat=	statement.executeQuery(query);
 			while(resultat.next()){
+				jo.append("Statue","0K");
+				jo.append("code", 200);
 				jo.append("id_friend", resultat.getString(1));
 				jo.append("login", UserTools.getLogin(Integer.parseInt(resultat.getString(1))));
 			}
@@ -153,8 +155,8 @@ public class Friends {
 			e.printStackTrace();
 		}catch(JSONException j){
 			j.printStackTrace();
-		}
-		
+		}	
+		System.out.println(jo.toString());
 		return jo;
 	}
 

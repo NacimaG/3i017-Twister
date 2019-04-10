@@ -66,8 +66,21 @@ public class ConnexionTools {
 	 * @return
 	 */
 	public static int getId(String login) {
-		
-		return 0;
+		int id_user=0;
+		try{
+			Connection connexion = Database.getMySQLConnection();
+			Statement statement = connexion.createStatement();
+			String req = "SELECT user_id FROM User WHERE user_login= '"+login+"'";
+			ResultSet res= statement.executeQuery(req);
+			
+			if(res.next())
+				return Integer.parseInt(res.getString(1));
+			statement.close();
+			connexion.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return id_user;
 	}
 	/**
 	 * retourner la clef de connexion 

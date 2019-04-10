@@ -29,7 +29,7 @@ public class AddFriend extends HttpServlet {
 		/***********************************NOT OK *******************/
 		try {
 		int  id_friend =Integer.parseInt(ami);
-		out.println((Friends.AddFriend(key, id_friend)).toString());
+		out.println((Friends.AddFriend(key, id_friend)));
 
 		}catch(NumberFormatException e) {
 			e.printStackTrace();

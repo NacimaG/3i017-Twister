@@ -12,6 +12,9 @@ public class teste {
 	        
 	        if(timestamp.after(timestamp1))
 	        	System.out.println("coucouc");
+	        
+	        
+	        System.out.println(Integer.parseInt( "24"));
 	}
 
 }

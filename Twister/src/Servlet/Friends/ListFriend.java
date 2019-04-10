@@ -22,9 +22,10 @@ public class ListFriend extends HttpServlet{
 	 HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType( " text / plain " );
 		PrintWriter out = response.getWriter ();
-		int id_user1 =Integer.parseInt(request.getParameter("id_user1"));
-		
-		out.println(Friends.listFriend(id_user1));
+		//int id_user1 =Integer.parseInt(request.getParameter("id_user1"));
+		String login= request.getParameter("login");
+		out.println(Friends.listFriend(login));
+		//out.println(Friends.listFriend(id_user1));
 
 	 	
 	 }

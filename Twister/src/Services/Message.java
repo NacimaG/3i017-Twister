@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import org.bson.Document;
+import org.bson.types.ObjectId;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -69,47 +70,40 @@ public class Message {
 		return retour;
 			
 	}
+	/**
+	 * 
+	 * REMOVE MESSAGE
+	 * @param idUser
+	 * @param idMessage
+	 * @return
+	 */
 	
-	public static JSONObject removeMessage(String key, String idMessage) {
+	public static JSONObject removeMessage(String idUser, String idMessage) {
 		JSONObject jo = new JSONObject();
-		if(ConnexionTools.checkSession(key)){
-
-		try {
-		if(ConnexionTools.hasExceededTimeOut(key)) {
-			User.deconnexion(key);
-			return ServiceTools.ErrorJson.serviceRefused("TimeOut exceeded, disconnected automatically", 1);
-		}
-		}catch(SQLException s) {
-			s.printStackTrace();
-		}catch(JSONException j) {
-			j.printStackTrace();
-		}
-		try {
-		ConnexionTools.updateTimeOut(key);
-		}catch(SQLException s) {
-			s.printStackTrace();
-		}
-
-			//String id= FriendTools.getId(key)+"";
+			int id= Integer.parseInt(idUser);
 			Document doc = new Document();
-			doc.append("key", key);
-			doc.append("_id", idMessage);
+			doc.append("idUser", id);
+			doc.append("_id",new ObjectId(idMessage));
+
 			MongoDatabase mdb = Database.getMongoCollection();
 
-			MongoCollection<Document> message = mdb.getCollection("message");
-			
+			MongoCollection<Document> message = mdb.getCollection("messages");
+			System.out.println(1);
 			MongoCursor<Document> cursor = message.find(doc).iterator();
+						
 			if(cursor.hasNext()){
+				System.out.println(3);
 				message.deleteOne(doc);
 				try{
 					jo.put("suppression", "OK");
 				}catch(JSONException e){
+					System.out.println(4);
 					e.printStackTrace();
 				}
 			}else{
-				System.out.println("domage");
+				System.out.println("msg non trouvé");
 			}
-		}
+		
 		return jo;
 	}
 	/**
@@ -171,6 +165,55 @@ public class Message {
 		}
 		return json;
 		}
+	/**
+	 * 
+	 * GET USER MESSAGE
+	 * @param idUser
+	 * @return
+	 * @throws JSONException 
+	 */
+	
+	public static JSONObject getMessageUser(String idUser) throws JSONException {
+		//int id=Integer.parseInt(idUser);
+
+		if(! ConnexionTools.checkId(Integer.parseInt(idUser)))
+			return ServiceTools.ErrorJson.serviceRefused("user not exists", -1);
+		MongoDatabase mdb = Database.getMongoCollection();
+
+		MongoCollection<Document> message = mdb.getCollection("messages");
+		
+		
+		Document query = new Document();
+		query.put("idUser", idUser);
+		FindIterable<Document> findIterable = message.find(query).sort(new Document("date",-1));
+		MongoCursor<Document> msg = findIterable.iterator();
+
+		JSONObject json = new JSONObject();
+
+		JSONArray messages = new JSONArray();
+		System.out.println(msg.hasNext());
+		try {
+
+		while(msg.hasNext()){
+			Document document = msg.next();
+			JSONObject msgTmp = new JSONObject();
+			
+			msgTmp.put("message_id", document.get("_id"));
+			msgTmp.put("date",document.get("date") );
+			msgTmp.put("text", document.get("text"));
+			
+			messages.put(msgTmp);
+		}
+		json.put("idUser",idUser);
+		//json.put("login", UserTools.getLogin(id));
+		json.put("messages", messages);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return json;
+		
+		
+	}
 	
 	
 

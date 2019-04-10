@@ -12,13 +12,13 @@ public class TestMsg {
 	String key1="heheh";
 	String text="mazigh";
 	
-	int id = FriendTools.getId(key1);
+	//int id = FriendTools.getId(key1);
 	//System.out.println(Message.addMessage(text, key));
 	
 	//System.out.println(Message.addMessage(text, "1605mtdvt5rnk-1fc6r8u8n9xj7"));
-	 //System.out.println(Message.removeMessage(key, "5c7547fda5d3fd293d34f65e"));
+	System.out.println(Message.removeMessage("79","5cac8f6d4cecf107546ecd7b"));
 	
-		System.out.println(Message.ListMessage(key).toString());
+		//System.out.println(Message.ListMessage(key).toString());
 	
 	}
 	

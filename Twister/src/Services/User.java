@@ -164,11 +164,16 @@ public class User {
 				System.out.println("nom::"+resultat.getString(3));
 				jo.append("state", "OK");
 				jo.append("code", 200);
+				jo.append("user_id", resultat.getString(1));
 				jo.append("nom", resultat.getString(5));//3
 				jo.append("prenom", resultat.getString(4));//4
 				jo.append("mail", resultat.getString(6));//5
 				jo.append("telephone", resultat.getString(6));//6
-				System.out.println("afficher ke  :: "+jo.get("nom"));
+				System.out.println("afficher nom  :: "+jo.get("nom"));
+				System.out.println("afficher prenom  :: "+jo.get("prenom"));
+				System.out.println("afficher mail :: "+jo.get("mail"));
+				System.out.println("afficher phone  :: "+jo.get("telephone"));
+				System.out.println("afficher user_id  :: "+jo.get("user_id"));
 			}
 			resultat.close();
 			statement.close();
