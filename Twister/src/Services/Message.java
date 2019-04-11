@@ -174,9 +174,9 @@ public class Message {
 	 */
 	
 	public static JSONObject getMessageUser(String idUser) throws JSONException {
-		//int id=Integer.parseInt(idUser);
+		int id=Integer.parseInt(idUser);
 
-		if(! ConnexionTools.checkId(Integer.parseInt(idUser)))
+		if(! ConnexionTools.checkId(id))
 			return ServiceTools.ErrorJson.serviceRefused("user not exists", -1);
 		MongoDatabase mdb = Database.getMongoCollection();
 
@@ -184,14 +184,13 @@ public class Message {
 		
 		
 		Document query = new Document();
-		query.put("idUser", idUser);
+		query.put("idUser", id);
 		FindIterable<Document> findIterable = message.find(query).sort(new Document("date",-1));
 		MongoCursor<Document> msg = findIterable.iterator();
 
 		JSONObject json = new JSONObject();
 
 		JSONArray messages = new JSONArray();
-		System.out.println(msg.hasNext());
 		try {
 
 		while(msg.hasNext()){

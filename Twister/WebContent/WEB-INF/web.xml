@@ -29,6 +29,10 @@
     <servlet-name>ListFriend</servlet-name>
     <servlet-class>Servlet.Friends.ListFriend</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>GetUsers</servlet-name>
+    <servlet-class>Servlet.Friends.GetUsers</servlet-class>
+  </servlet>
 
    <servlet>
     <servlet-name>AddMessage</servlet-name>
@@ -45,6 +49,11 @@
   <servlet>
     <servlet-name>GetMessageUser</servlet-name>
     <servlet-class>Servlet.Message.GetMessageUser</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>GetUserProfile</servlet-name>
+    <servlet-class>Servlet.Friends.GetUserProfile</servlet-class>
   </servlet>
  
 	<servlet-mapping>
@@ -74,6 +83,15 @@
 	<servlet-mapping>
    	 	<servlet-name>ListFriend</servlet-name>
     	<url-pattern>/ListFriend</url-pattern>
+  	</servlet-mapping> 
+	<servlet-mapping>
+   	 	<servlet-name>GetUsers</servlet-name>
+    	<url-pattern>/GetUsers</url-pattern>
+  	</servlet-mapping> 
+	
+	<servlet-mapping>
+   	 	<servlet-name>GetUserProfile</servlet-name>
+    	<url-pattern>/GetUserProfile</url-pattern>
   	</servlet-mapping> 
 	<servlet-mapping>
    	 	<servlet-name>AddMessage</servlet-name>

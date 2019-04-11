@@ -159,5 +159,43 @@ public class Friends {
 		System.out.println(jo.toString());
 		return jo;
 	}
+	
+	/**
+	 * GETUSERSS
+	 * 
+	 */
+	public static JSONObject getUsers(String login) {
+		int id_user1= ConnexionTools.getId(login);
+		JSONObject jo = new JSONObject();
+		Connection connexion;
+	
+		try {
+			if(!ConnexionTools.checkId(id_user1)) 
+				return ServiceTools.ErrorJson.serviceRefused("Utilisateur not exists",-1);
+				
+			connexion = Database.getMySQLConnection();  
+			Statement statement = connexion.createStatement();
+			String query = "SELECT * FROM user ";
+			ResultSet resultat=	statement.executeQuery(query);
+			jo.append("Statue", "OK");
+			jo.append("code", 200);
+			while(resultat.next()){
+				jo.append("login", UserTools.getLogin(Integer.parseInt(resultat.getString(1))));
+				jo.append("user_id", resultat.getString(1));
+
+			}
+			resultat.close();
+			statement.close();
+			connexion.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}catch(JSONException j){
+			j.printStackTrace();
+		}	
+		System.out.println(jo.toString());
+		return jo;
+		
+			}
 
 }

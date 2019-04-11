@@ -68,8 +68,7 @@ public class User {
 		JSONObject retour= new JSONObject();
 		try {
 			if((login==null)||(password == null)) {
-				//retour.append("message", "Pas d'arguments");
-				//retour.append("code", -1);
+
 				return ServiceTools.ErrorJson.serviceRefused("Pas d'argument", -1);
 			}
 			if(!ConnexionTools.checkUser(login)) 
@@ -143,6 +142,11 @@ public class User {
 	 * @param key
 	 * @return
 	 */
+	/**
+	 * $*******************MODIF IC I KEY PAR LOGIN 
+	 * @param key
+	 * @return
+	 */
 	
 	public static JSONObject getProfil(String key) {
 		JSONObject retour = new JSONObject();
@@ -185,10 +189,50 @@ public class User {
 		}catch(SQLException s) {
 			s.printStackTrace();
 		}
+		return retour;
 		
-		
-		return null;
 	}
+	public static JSONObject getUserProfil(String login) {
+		JSONObject retour = new JSONObject();
+		try {
+			Connection connexion;
+			JSONObject jo = new JSONObject();
+			
+			connexion = Database.getMySQLConnection();  
+			Statement statement = connexion.createStatement();
+			
+			String query = "SELECT * FROM User WHERE user_login= '"+login+"' ";
+			ResultSet resultat=	statement.executeQuery(query);
+			while(resultat.next()){
+				System.out.println("nom::"+resultat.getString(3));
+				jo.append("state", "OK");
+				jo.append("code", 200);
+				jo.append("user_id", resultat.getString(1));
+				jo.append("nom", resultat.getString(5));//3
+				jo.append("prenom", resultat.getString(4));//4
+				jo.append("mail", resultat.getString(6));//5
+				jo.append("telephone", resultat.getString(6));//6
+				System.out.println("afficher nom  :: "+jo.get("nom"));
+				System.out.println("afficher prenom  :: "+jo.get("prenom"));
+				System.out.println("afficher mail :: "+jo.get("mail"));
+				System.out.println("afficher phone  :: "+jo.get("telephone"));
+				System.out.println("afficher user_id  :: "+jo.get("user_id"));
+			}
+			resultat.close();
+			statement.close();
+			connexion.close();
+			return jo;
+
+		}catch(JSONException j) {
+			j.printStackTrace();
+		}catch(SQLException s) {
+			s.printStackTrace();
+		}
+		
+		
+		return retour;
+	}
+	
 	
 	
 }
