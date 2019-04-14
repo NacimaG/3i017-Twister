@@ -10,6 +10,10 @@
     <servlet-class>Servlet.User.Connexion</servlet-class>
   </servlet>
      <servlet>
+    <servlet-name>NbFriends</servlet-name>
+    <servlet-class>Servlet.User.NbFriends</servlet-class>
+  </servlet>
+     <servlet>
     <servlet-name>GetProfil</servlet-name>
     <servlet-class>Servlet.User.GetProfil</servlet-class>
   </servlet>
@@ -50,6 +54,10 @@
     <servlet-name>GetMessageUser</servlet-name>
     <servlet-class>Servlet.Message.GetMessageUser</servlet-class>
   </servlet>
+   <servlet>
+    <servlet-name>GetAllMessages</servlet-name>
+    <servlet-class>Servlet.Message.GetAllMessages</servlet-class>
+  </servlet>
   
   <servlet>
     <servlet-name>GetUserProfile</servlet-name>
@@ -71,6 +79,10 @@
 	<servlet-mapping>
    	 	<servlet-name>Logout</servlet-name>
     	<url-pattern>/Logout</url-pattern>
+  	</servlet-mapping>
+  	<servlet-mapping>
+   	 	<servlet-name>NbFriends</servlet-name>
+    	<url-pattern>/NbFriends</url-pattern>
   	</servlet-mapping>
 	<servlet-mapping>
    	 	<servlet-name>AddFriend</servlet-name>
@@ -108,6 +120,10 @@
   	<servlet-mapping>
    	 	<servlet-name>GetMessageUser</servlet-name>
     	<url-pattern>/GetMessageUser</url-pattern>
+  	</servlet-mapping> 
+  	<servlet-mapping>
+   	 	<servlet-name>GetAllMessages</servlet-name>
+    	<url-pattern>/GetAllMessages</url-pattern>
   	</servlet-mapping> 
   	<filter>
 		<filter-name>CorsFilter</filter-name>

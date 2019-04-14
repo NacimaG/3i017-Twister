@@ -7,6 +7,7 @@ import java.util.Date;
 import org.json.JSONObject;
 
 import ServiceTools.ConnexionTools;
+import ServiceTools.UserTools;
 import Services.User;
 
 
@@ -39,10 +40,11 @@ public class TestUser {
 		/**
 		 * TEST DECONNEXION
 		 */	
-		
+		System.out.println("login "+ UserTools.getLogin(Integer.parseInt("78")));
+
 		//System.out.println(User.deconnexion("-t7t99wmbyc71-1b7d2gxwdztj4"));
 		//System.out.println(ConnexionTools.getKey(28));
-		System.out.println(User.getProfil("-1gzcw42vletrq-1mrt62vu43asy"));
+		//System.out.println(User.getProfil("-1gzcw42vletrq-1mrt62vu43asy"));
 	}
 
 }

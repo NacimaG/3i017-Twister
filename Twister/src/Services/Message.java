@@ -1,5 +1,6 @@
 package Services;
 
+import java.net.UnknownHostException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -26,15 +27,18 @@ import com.mongodb.client.MongoDatabase;
 import BaseDD.DBStatic;
 import BaseDD.Database;
 
-
-
 //listMessage(id_user,string messageDebut,String message)
 public class Message {
+	/**
+	 * **********ADD_MESSAGE
+	 * @param text
+	 * @param key
+	 * @return
+	 */
 
 	public static JSONObject addMessage(String text, String key) {
 		JSONObject retour = new JSONObject();
-
-		
+	
 		try {
 			if((text==null)||(key==null))
 				return ServiceTools.ErrorJson.serviceRefused("Pas d'arguments", -1);
@@ -215,5 +219,39 @@ public class Message {
 	}
 	
 	
+/**
+ * 
+ * GetAllMessages
+ */
+
+
+public static JSONArray getMessages() throws UnknownHostException, SQLException, JSONException {
+	MongoDatabase mdb = Database.getMongoCollection();
+	MongoCollection<Document> message = mdb.getCollection("messages");
+
+	//MongoCollection<Document> message = Database.getCollection("message");
+	FindIterable<Document> findIterable = message.find().sort(new Document("date",-1));
+	MongoCursor<Document> msg = findIterable.iterator();
+
+	JSONObject json = new JSONObject();
+	JSONArray messages = new JSONArray();
+
+	while(msg.hasNext()){
+		JSONObject msgtmp = new JSONObject();
+		Document document = msg.next();
+
+		msgtmp.put("login", UserTools.getLogin(Integer.parseInt(document.get("idUser").toString())));
+		msgtmp.put("message_id", document.get("_id"));
+		msgtmp.put("text", document.get("text"));
+		msgtmp.put("date", document.get("date"));	
+
+		messages.put(msgtmp);
+		
+	}
+	json.put("messages", messages);
+
+	return messages;
+}
+
 
 }

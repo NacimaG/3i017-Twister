@@ -33,7 +33,7 @@ public class UserTools {
 		
 		
 	}
-public static String InsertConnexion( String login) {
+	public static String InsertConnexion( String login) {
 		UUID uuid = UUID.randomUUID();
 		String key = Long.toString(uuid.getMostSignificantBits(), 36) + Long.toString(uuid.getLeastSignificantBits(), 36);;
 		
@@ -84,9 +84,11 @@ public static String getLogSession(String key) {
 			return res.getString(1);
 		statement.close();
 		connexion.close();
-	}catch(SQLException e){
+		}catch(SQLException e){
 		e.printStackTrace();
-	}
+		}
+		
+		
 	return log;	
 }
 

@@ -2,6 +2,7 @@ package Servlet.Message;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,8 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONException;
 
-public class GetMessageUser extends HttpServlet {
-	public GetMessageUser() {
+/**
+ * Servlet implementation class AddMessage
+ */
+
+public class GetAllMessages extends HttpServlet {
+    
+    public GetAllMessages() {
         super();
     }
 
@@ -19,17 +25,18 @@ public class GetMessageUser extends HttpServlet {
 		response.setContentType( " text / plain " );
 		PrintWriter out = response.getWriter ();
 		
-		String idUser = request.getParameter("idUser");
-		//int idU=Integer.parseInt(idUser);
 		
 		
-			try {
-				out.println(Services.Message.getMessageUser(idUser));
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		
+		try {
+			out.println(Services.Message.getMessages());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		}
+
 
 }

@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import com.mongodb.util.JSON;
 
 import ServiceTools.ConnexionTools;
+import ServiceTools.ErrorJson;
 import ServiceTools.FriendTools;
 import ServiceTools.UserTools;
 import BaseDD.Database;
@@ -233,6 +234,49 @@ public class User {
 		return retour;
 	}
 	
+	public static JSONObject nbFriends(String login){
+		JSONObject retour = new JSONObject();
+		int id= ConnexionTools.getId(login);
+		try {
+		if (login == null)
+			
+				return ErrorJson.serviceRefused("Pas d'arguments", -1);
+		
+			if( ! ConnexionTools.checkUser(login)) 
+				return ErrorJson.serviceRefused("login Error", 1);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+		Connection connexion = Database.getMySQLConnection();
+		Statement statement = connexion.createStatement();
+		String req = "SELECT count(*) FROM friends WHERE id_user1= '"+id+"'";
+		ResultSet res= statement.executeQuery(req);
+		retour.put("statue","OK");
+		retour.put("code", 200);
+		if(res.next())
+			
+				retour.put("nbfriends",res.getString(1));
+		statement.close();
+		connexion.close();
+		
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	
+	
+		
+		return retour;
+	}
 	
 	
 }
