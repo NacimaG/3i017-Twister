@@ -204,7 +204,7 @@ public class Message {
 			msgTmp.put("message_id", document.get("_id"));
 			msgTmp.put("date",document.get("date") );
 			msgTmp.put("text", document.get("text"));
-			
+			msgTmp.put("idUser", document.get("idUser"));
 			messages.put(msgTmp);
 		}
 		json.put("idUser",idUser);
@@ -239,7 +239,7 @@ public static JSONArray getMessages() throws UnknownHostException, SQLException,
 	while(msg.hasNext()){
 		JSONObject msgtmp = new JSONObject();
 		Document document = msg.next();
-
+		
 		msgtmp.put("login", UserTools.getLogin(Integer.parseInt(document.get("idUser").toString())));
 		msgtmp.put("message_id", document.get("_id"));
 		msgtmp.put("text", document.get("text"));
