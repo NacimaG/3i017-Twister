@@ -19,12 +19,12 @@ public class GetMessageUser extends HttpServlet {
 		response.setContentType( " text / plain " );
 		PrintWriter out = response.getWriter ();
 		
-		String idUser = request.getParameter("idUser");
+		String login = request.getParameter("login");
 		//int idU=Integer.parseInt(idUser);
 		
 		
 			try {
-				out.println(Services.Message.getMessageUser(idUser));
+				out.println(Services.Message.getMessageUser(login));
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

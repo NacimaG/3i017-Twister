@@ -22,11 +22,12 @@ public class AddFriend extends HttpServlet {
 	 protected void doGet(HttpServletRequest request,
 		HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter ();
+	 	response.setContentType( " text / plain " );
+
 
 		String key = request.getParameter("key");
 		String ami = request.getParameter("id_friend");
 		
-		/***********************************NOT OK *******************/
 		try {
 		int  id_friend =Integer.parseInt(ami);
 		out.println((Friends.AddFriend(key, id_friend)));
@@ -35,7 +36,6 @@ public class AddFriend extends HttpServlet {
 			e.printStackTrace();
 		}
 		 
-	 	response.setContentType( " text / plain " );
 		
 	 }
 	 

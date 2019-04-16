@@ -177,8 +177,8 @@ public class Message {
 	 * @throws JSONException 
 	 */
 	
-	public static JSONObject getMessageUser(String idUser) throws JSONException {
-		int id=Integer.parseInt(idUser);
+	public static JSONObject getMessageUser(String login) throws JSONException {
+		int id=ConnexionTools.getId(login);
 
 		if(! ConnexionTools.checkId(id))
 			return ServiceTools.ErrorJson.serviceRefused("user not exists", -1);
@@ -207,7 +207,7 @@ public class Message {
 			msgTmp.put("idUser", document.get("idUser"));
 			messages.put(msgTmp);
 		}
-		json.put("idUser",idUser);
+		json.put("idUser",id);
 		//json.put("login", UserTools.getLogin(id));
 		json.put("messages", messages);
 		} catch (JSONException e) {

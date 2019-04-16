@@ -26,6 +26,8 @@ public class Friends {
 	 */
 	public static JSONObject AddFriend(String key, int id_friend) {
 		JSONObject retour = new JSONObject();
+		String login = UserTools.getLogSession(key);
+		int my_id= ConnexionTools.getId(login);
 		try {
 			if(key==null || id_friend==0)
 				return ErrorJson.serviceRefused("pas d'argument", -1);
@@ -33,7 +35,10 @@ public class Friends {
 				return ErrorJson.serviceRefused("Connexion non existante", 100);
 				
 			if(!ConnexionTools.checkId(id_friend))
-				return ErrorJson.serviceRefused("id friend not exists", 100);
+				return ErrorJson.serviceRefused("id friend not exists", 1000);
+			if(FriendTools.checkFriend(my_id, id_friend)) {
+				return ErrorJson.serviceRefused("Opération impossible, vous êtes déjà amis ", 2);
+			}
 		/*	if(ConnexionTools.hasExceededTimeOut(key)) {
 				System.out.println(1);
 				User.deconnexion(key);
@@ -90,8 +95,7 @@ public class Friends {
 				
 				if(!FriendTools.checkFriend(id_friend))
 					return ServiceTools.ErrorJson.serviceRefused("id friend non existant",-1);
-				if(!FriendTools.checkFriend(FriendTools.getId(key), id_friend))
-					return ServiceTools.ErrorJson.serviceRefused("id friend non existant",-1);
+			
 				Connection connexion = Database.getMySQLConnection();
 				Statement statement = connexion.createStatement();
 				String query = "DELETE FROM Friends WHERE id_user1='"+FriendTools.getId(key)+"'and id_user2='"+id_friend+"';";
@@ -134,16 +138,20 @@ public class Friends {
 		Connection connexion;
 	
 		try {
+			if(login==null)
+				return ServiceTools.ErrorJson.serviceRefused("pas d'arguments",-1);
+
 			if(!ConnexionTools.checkId(id_user1)) 
-				return ServiceTools.ErrorJson.serviceRefused("Utilisateur not exists",-1);
+				return ServiceTools.ErrorJson.serviceRefused("Utilisateur not exists",1);
 				
 			connexion = Database.getMySQLConnection();  
 			Statement statement = connexion.createStatement();
 			String query = "SELECT id_user2 FROM Friends WHERE id_user1 = '"+id_user1+"' ";
 			ResultSet resultat=	statement.executeQuery(query);
+			jo.append("Statue","0K");
+			jo.append("code", 200);
 			while(resultat.next()){
-				jo.append("Statue","0K");
-				jo.append("code", 200);
+				
 				jo.append("id_friend", resultat.getString(1));
 				jo.append("login", UserTools.getLogin(Integer.parseInt(resultat.getString(1))));
 			}
