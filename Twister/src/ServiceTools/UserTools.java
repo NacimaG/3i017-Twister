@@ -18,7 +18,7 @@ public class UserTools {
 			Connection connexion = Database.getMySQLConnection();
 			Statement statement = connexion.createStatement();
 
-			String query = "INSERT INTO User(user_login,user_password,nom,prenom,mail,phoneNumber) VALUES('"+login+"','"+password+"','"+nom+"','"+prenom+"','"+mail+"','"+phoneNumber+"');";
+			String query = "INSERT INTO user(user_login,user_password,nom,prenom,mail,phoneNumber) VALUES('"+login+"','"+password+"','"+nom+"','"+prenom+"','"+mail+"','"+phoneNumber+"');";
 
 			int resultat= statement.executeUpdate(query);
 		
@@ -41,7 +41,7 @@ public class UserTools {
 			Timestamp fin_session  =new Timestamp(System.currentTimeMillis()+(((3600) + 59)* 1000));
 			Connection connexion = Database.getMySQLConnection();
 			Statement statement = connexion.createStatement();
-			String query ="INSERT INTO Session(session_key,user_login,session_fin) VALUES('"+key+"','"+login+"','"+fin_session+"');";
+			String query ="INSERT INTO session(session_key,user_login,session_fin) VALUES('"+key+"','"+login+"','"+fin_session+"');";
 			int resultat= statement.executeUpdate(query);
 			
 			statement.close();
@@ -60,7 +60,7 @@ public static String getLogin(int id) {
 	try{
 		Connection connexion = Database.getMySQLConnection();
 		Statement statement = connexion.createStatement();
-		String req = "SELECT user_login FROM User WHERE user_id= '"+id+"'";
+		String req = "SELECT user_login FROM user WHERE user_id= '"+id+"'";
 		ResultSet res= statement.executeQuery(req);
 		
 		if(res.next())
@@ -77,7 +77,7 @@ public static String getLogSession(String key) {
 	try{
 		Connection connexion = Database.getMySQLConnection();
 		Statement statement = connexion.createStatement();
-		String req = "SELECT user_login FROM Session WHERE session_key= '"+key+"'";
+		String req = "SELECT user_login FROM session WHERE session_key= '"+key+"'";
 		ResultSet res= statement.executeQuery(req);
 		
 		if(res.next())

@@ -29,7 +29,7 @@ public class TestUser {
 		 * TEST CREATION D'UN UTILISATEUR
 		 */
 		//JSONObject  o=User.createUser("test4","test4",c,d,e);
-		//System.out.println(User.createUser("tata","mdptata",c,d,e,p).toString());
+		System.out.println(User.createUser("naci","naci",c,d,e,p).toString());
 		
 
 		//System.out.println(User.createUser(log,psw,c,d,e).toString());
@@ -37,12 +37,13 @@ public class TestUser {
 		 * TEST CONNEXION
 		 */
 		//System.out.println(User.connexion("test4", "test4"));
-		/**
+		/** 
 		 * TEST DECONNEXION
 		 */	
-		System.out.println("login "+ UserTools.getLogin(Integer.parseInt("78")));
-
-		//System.out.println(User.deconnexion("-t7t99wmbyc71-1b7d2gxwdztj4"));
+		//System.out.println("login "+ UserTools.getLogin(Integer.parseInt("78")));
+		//JSONObject j =User.getProfil("uos3u5ngj6yg-1d0tazoei9vlf");
+		//System.out.println(j.toString());
+		//System.out.println(User.deconnexion("-4fi1aubll6q5-1jk6tjwlsucr5"));
 		//System.out.println(ConnexionTools.getKey(28));
 		//System.out.println(User.getProfil("-1gzcw42vletrq-1mrt62vu43asy"));
 	}

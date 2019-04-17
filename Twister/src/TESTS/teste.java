@@ -2,6 +2,8 @@ package TESTS;
 
 import java.sql.Timestamp;
 
+import org.json.JSONObject;
+
 public class teste {
 
 	public static void main(String[] args) {
@@ -12,9 +14,8 @@ public class teste {
 	        
 	        if(timestamp.after(timestamp1))
 	        	System.out.println("coucouc");
-	        
-	        
-	        System.out.println(Integer.parseInt( "24"));
+	        JSONObject j= new JSONObject();
+	
 	}
 
 }

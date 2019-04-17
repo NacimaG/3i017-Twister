@@ -37,7 +37,7 @@ public class Friends {
 			if(!ConnexionTools.checkId(id_friend))
 				return ErrorJson.serviceRefused("id friend not exists", 1000);
 			if(FriendTools.checkFriend(my_id, id_friend)) {
-				return ErrorJson.serviceRefused("Opération impossible, vous êtes déjà amis ", 2);
+				return ErrorJson.serviceRefused("Opï¿½ration impossible, vous ï¿½tes dï¿½jï¿½ amis ", 2);
 			}
 		/*	if(ConnexionTools.hasExceededTimeOut(key)) {
 				System.out.println(1);
@@ -98,7 +98,7 @@ public class Friends {
 			
 				Connection connexion = Database.getMySQLConnection();
 				Statement statement = connexion.createStatement();
-				String query = "DELETE FROM Friends WHERE id_user1='"+FriendTools.getId(key)+"'and id_user2='"+id_friend+"';";
+				String query = "DELETE FROM friends WHERE id_user1='"+FriendTools.getId(key)+"'and id_user2='"+id_friend+"';";
 				
 				int resultat= statement.executeUpdate(query);
 				statement.close();
@@ -146,7 +146,7 @@ public class Friends {
 				
 			connexion = Database.getMySQLConnection();  
 			Statement statement = connexion.createStatement();
-			String query = "SELECT id_user2 FROM Friends WHERE id_user1 = '"+id_user1+"' ";
+			String query = "SELECT id_user2 FROM friends WHERE id_user1 = '"+id_user1+"' ";
 			ResultSet resultat=	statement.executeQuery(query);
 			jo.append("Statue","0K");
 			jo.append("code", 200);

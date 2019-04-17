@@ -121,7 +121,7 @@ public class User {
 		try {
 			Connection connexion = Database.getMySQLConnection();
 			Statement statement = connexion.createStatement();
-			String query = "DELETE FROM Session WHERE session_key='"+key+"';";
+			String query = "DELETE FROM session WHERE session_key='"+key+"';";
 
 			int resultat= statement.executeUpdate(query);
 			statement.close();
@@ -163,7 +163,7 @@ public class User {
 			connexion = Database.getMySQLConnection();  
 			Statement statement = connexion.createStatement();
 			
-			String query = "SELECT * FROM User WHERE user_login= '"+login+"' ";
+			String query = "SELECT * FROM user WHERE user_login= '"+login+"' ";
 			ResultSet resultat=	statement.executeQuery(query);
 			while(resultat.next()){
 				System.out.println("nom::"+resultat.getString(3));
@@ -183,6 +183,7 @@ public class User {
 			resultat.close();
 			statement.close();
 			connexion.close();
+			retour=jo;
 			return jo;
 
 		}catch(JSONException j) {
@@ -193,6 +194,12 @@ public class User {
 		return retour;
 		
 	}
+	/**
+	 * 
+	 * 
+	 * @param login
+	 * @return
+	 */
 	public static JSONObject getUserProfil(String login) {
 		JSONObject retour = new JSONObject();
 		try {
@@ -202,17 +209,17 @@ public class User {
 			connexion = Database.getMySQLConnection();  
 			Statement statement = connexion.createStatement();
 			
-			String query = "SELECT * FROM User WHERE user_login= '"+login+"' ";
+			String query = "SELECT * FROM user WHERE user_login= '"+login+"' ";
 			ResultSet resultat=	statement.executeQuery(query);
 			while(resultat.next()){
 				System.out.println("nom::"+resultat.getString(3));
 				jo.append("state", "OK");
 				jo.append("code", 200);
 				jo.append("user_id", resultat.getString(1));
-				jo.append("nom", resultat.getString(5));//3
-				jo.append("prenom", resultat.getString(4));//4
-				jo.append("mail", resultat.getString(6));//5
-				jo.append("telephone", resultat.getString(6));//6
+				jo.append("nom", resultat.getString(5));
+				jo.append("prenom", resultat.getString(4));
+				jo.append("mail", resultat.getString(6));
+				jo.append("telephone", resultat.getString(6));
 				System.out.println("afficher nom  :: "+jo.get("nom"));
 				System.out.println("afficher prenom  :: "+jo.get("prenom"));
 				System.out.println("afficher mail :: "+jo.get("mail"));

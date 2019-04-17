@@ -16,7 +16,7 @@ public class TestMsg {
 	//System.out.println(Message.addMessage(text, key));
 	
 	//System.out.println(Message.addMessage(text, "1605mtdvt5rnk-1fc6r8u8n9xj7"));
-	System.out.println(Message.removeMessage("79","5cac8f6d4cecf107546ecd7b"));
+	System.out.println(Message.removeMessage("77","5cb6e7c0aef71d19b4215236"));
 	
 		//System.out.println(Message.ListMessage(key).toString());
 	

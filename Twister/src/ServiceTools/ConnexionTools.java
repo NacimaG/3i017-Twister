@@ -22,7 +22,7 @@ public class ConnexionTools {
 			Connection connexion = Database.getMySQLConnection();
 
 			Statement statement = connexion.createStatement();
-			String query = "SELECT user_login FROM User WHERE user_login ='"+login+"'" ;
+			String query = "SELECT user_login FROM user WHERE user_login ='"+login+"'" ;
 			ResultSet resultat=	statement.executeQuery(query);
 			
 			
@@ -46,7 +46,7 @@ public class ConnexionTools {
 				Connection connexion = Database.getMySQLConnection();
 				Statement statement = connexion.createStatement();
 			
-				String query = "SELECT user_password FROM User WHERE user_login = '"+login+"' ";
+				String query = "SELECT user_password FROM user WHERE user_login = '"+login+"' ";
 				ResultSet resultat=	statement.executeQuery(query);
 				if(resultat.next())
 					log = resultat.getString(1);
@@ -70,7 +70,7 @@ public class ConnexionTools {
 		try{
 			Connection connexion = Database.getMySQLConnection();
 			Statement statement = connexion.createStatement();
-			String req = "SELECT user_id FROM User WHERE user_login= '"+login+"'";
+			String req = "SELECT user_id FROM user WHERE user_login= '"+login+"'";
 			ResultSet res= statement.executeQuery(req);
 			
 			if(res.next())
@@ -101,7 +101,7 @@ public class ConnexionTools {
 			Connection connexion = Database.getMySQLConnection();
 			Statement statement = connexion.createStatement();
 			
-			String query = "SELECT session_key FROM Session WHERE user_login = '"+login+"' ";
+			String query = "SELECT session_key FROM sessionWHERE user_login = '"+login+"' ";
 			ResultSet resultat=	statement.executeQuery(query);
 			b= resultat.next();
 			resultat.close();
@@ -116,10 +116,10 @@ public class ConnexionTools {
 		return false;
 	}
 	/**
-	 * connexion avec la base de donnée pour vérifier si la clé donné en paramètre exist dans la base
-	 * càd si l'utilisateur est connecté
-	 * @param key clé de la session
-	 * @return true si la session existe (utilisateur connecté) false sinon
+	 * connexion avec la base de donnï¿½e pour vï¿½rifier si la clï¿½ donnï¿½ en paramï¿½tre exist dans la base
+	 * cï¿½d si l'utilisateur est connectï¿½
+	 * @param key clï¿½ de la session
+	 * @return true si la session existe (utilisateur connectï¿½) false sinon
 	 */
 	public static boolean checkSession(String key) {
 		
@@ -130,7 +130,7 @@ public class ConnexionTools {
 			try{
 				Connection connexion = Database.getMySQLConnection();
 				Statement statement = connexion.createStatement();
-				String query = "SELECT * FROM Session WHERE session_key = '"+key+"' ";
+				String query = "SELECT * FROM session WHERE session_key = '"+key+"' ";
 				ResultSet resultat=	statement.executeQuery(query);
 				boolean res =resultat.next();
 				resultat.close();
@@ -148,7 +148,7 @@ public class ConnexionTools {
 		try{
 			Connection connexion = Database.getMySQLConnection();
 			Statement statement = connexion.createStatement();
-			String query = "SELECT user_login FROM User WHERE user_id = '"+id_user+"' ";
+			String query = "SELECT user_login FROM user WHERE user_id = '"+id_user+"' ";
 			ResultSet resultat=	statement.executeQuery(query);
 
 			boolean res =resultat.next();
@@ -172,7 +172,7 @@ public class ConnexionTools {
 
 			Connection connexion = Database.getMySQLConnection();
 			Statement statement = connexion.createStatement();
-			String query = "UPDATE Session SET session_fin = "+dateFinSession+" WHERE session_key = '"+key_session+"' ";
+			String query = "UPDATE session SET session_fin = "+dateFinSession+" WHERE session_key = '"+key_session+"' ";
 			int resultat=	statement.executeUpdate(query);
 			
 			
@@ -218,7 +218,7 @@ public class ConnexionTools {
 			log = UserTools.getLogin(id_user);
 			Connection connexion = Database.getMySQLConnection();
 			Statement statement = connexion.createStatement();
-			String req = "SELECT session_key FROM Session WHERE user_login= '"+log+"'";
+			String req = "SELECT session_key FROM session WHERE user_login= '"+log+"'";
 			ResultSet res= statement.executeQuery(req);
 			
 			if(res.next())
